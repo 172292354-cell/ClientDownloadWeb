@@ -10,6 +10,7 @@ export default {
             MeteorVerList: [],
             WurstVerList: [],
             MeteorI18nPluginVerList: [],
+            WurstI18nPlusPluginList: [],
             LastTime: 0,
             AutoUpdate: false,
         }
@@ -31,9 +32,12 @@ export default {
                 const MeteorList = JSON.parse(loaclVer).Meteor
                 const WurstList = JSON.parse(loaclVer).Wurst
                 const PluginList = JSON.parse(loaclVer).Plugin
+                const WurstI18nPlusPluginList = JSON.parse(loaclVer).WurstI18nPlusPlugin
+                
                 this.MeteorI18nPluginVerList = PluginList
                 this.MeteorVerList = MeteorList
                 this.WurstVerList = WurstList
+                this.WurstI18nPlusPluginVerList = WurstI18nPlusPluginList
                 this.LastTime = LastTime
             } else {
                 sendMessage("未在本地查找到已经存储的数据，正在获取...")
@@ -52,7 +56,7 @@ export default {
                 this.MeteorVerList = (await this.getVersion("MeteorCN")).data.assets;
                 this.WurstVerList = (await this.getVersion("WurstCN")).data.assets;
                 this.MeteorI18nPluginVerList = (await this.getVersion("Meteor-I18n-Support-plugin")).data.assets;
-                console.log(this.MeteorI18nPluginVerList.length);
+                this.WurstI18nPlusPluginList = (await this.getVersion("WurstI18nPlusPlugin")).data.assets;
                 
                 this.LastTime = new Date().toLocaleString()
                 var loaclVer = localStorage.getItem("Versions")
@@ -61,7 +65,8 @@ export default {
                     LastTime: new Date().toLocaleString(),
                     Meteor: this.MeteorVerList,
                     Wurst: this.WurstVerList,
-                    Plugin: this.MeteorI18nPluginVerList
+                    Plugin: this.MeteorI18nPluginVerList,
+                    WurstI18nPlusPlugin: this.WurstI18nPlusPluginList
                 }
                 localStorage.setItem("Versions", JSON.stringify(Versions))
                 this.listOutAnimation()
@@ -226,6 +231,7 @@ export default {
             </Meteor>
             <Wurst>
                 <ul class="VerList WurstVerList">
+                    <h1 style="color: red;">停止更新</h1>
                     <li v-for="(version, index) in WurstVerList" :key="index">
                         <div class="detail">
                             <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
@@ -234,6 +240,17 @@ export default {
                                     version.download_count }}</p>
                         </div>
 
+                    </li>
+                </ul>
+                <ul class="VerList WurstI18nPlusPluginList">
+                    <h1>Wurst I18n(汉化) Plus 插件</h1>
+                    <li v-for="(version, index) in WurstI18nPlusPluginList" :key="index">
+                        <div class="detail">
+                            <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                            <p>大小:{{ (version.size / (1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }}
+                                下载次数:{{
+                                    version.download_count }}</p>
+                        </div>
                     </li>
                 </ul>
             </Wurst>

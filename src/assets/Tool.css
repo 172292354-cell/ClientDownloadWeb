@@ -204,8 +204,22 @@ body {
   background-color: #a65eda;
   border-radius: 5px; /* 滑块的圆角 */
 }
+.WurstI18nPlusPluginList {
+  position: absolute;
+  width: 50%;
+  right: -100%;
+  bottom: 0;
+}
+.WurstI18nPlusPluginList::-webkit-scrollbar {
+  background-color: #a670cd00;
+}
+.WurstI18nPlusPluginList::-webkit-scrollbar-thumb {
+  background-color: #a65eda;
+  border-radius: 5px;
+}
 .WurstVerList {
   position: absolute;
+  width: 50%;
   right: -100%;
   bottom: 0;
 }

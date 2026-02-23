@@ -76,6 +76,19 @@ export default {
             }, {
                 opacity: 1,
                 height: "80%",
+                right: "50%",
+                duration: 1,
+                ease: "power2"
+            })
+            gsap.fromTo(".WurstI18nPlusPluginList", {
+                opacity: 0,
+                right: "-100%",
+                height: "100%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity: 1,
+                height: "80%",
                 right: "0%",
                 duration: 1,
                 ease: "power2"
@@ -132,6 +145,19 @@ export default {
                 ease: "power2"
             }, {
                 opacity: 0,
+                height: "100%",
+                right: "-100%",
+                duration: 1,
+                ease: "sine"
+            })
+            gsap.fromTo(".WurstI18nPlusPluginList", {
+                opacity: 1,
+                right: "0%",
+                height: "80%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity:0,
                 height: "100%",
                 right: "-100%",
                 duration: 1,
